@@ -18,9 +18,9 @@ Mattermost publisher for jenkins job builder
 				notify-backtonormal: true
 				notify-repeatedfailure: true
 				include-test-summary: true
-				show-commit-list: true
 				endpoint: example.com
 				room: '#jenkins'
 				icon: 'http://url.to/image.png'
+                include-custom-message: true
 				custom-message: message
 ```

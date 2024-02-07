@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='jenkins-jobs-mattermost',
-    version='0.1.0',
+    version='3.1.3',
     description='Jenkins Job Builder Mattermost Notifier',
     url='https://github.com/jovandeginste/jenkins-jobs-mattermost',
     author='Jo Vandeginste',

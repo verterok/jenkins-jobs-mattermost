@@ -27,7 +27,7 @@ def mattermost_publisher(parser, xml_parent, data):
 
     notifier = XML.SubElement(
         xml_parent, 'jenkins.plugins.mattermost.MattermostNotifier')
-    notifier.set('plugin', '@1.0')
+    notifier.set('plugin', 'mattermost@3.1.3')
 
     for opt, attr in (('notify-start', 'startNotification'),
                       ('notify-success', 'notifySuccess'),
@@ -37,8 +37,7 @@ def mattermost_publisher(parser, xml_parent, data):
                       ('notify-failure', 'notifyFailure'),
                       ('notify-backtonormal', 'notifyBackToNormal'),
                       ('notify-repeatedfailure', 'notifyRepeatedFailure'),
-                      ('include-test-summary', 'includeTestSummary'),
-                      ('show-commit-list', 'showCommitList')):
+                      ('include-test-summary', 'includeTestSummary')):
         (XML.SubElement(notifier, attr)
          .text) = 'true' if data.get(opt, True) else 'false'
 
@@ -46,7 +45,8 @@ def mattermost_publisher(parser, xml_parent, data):
                       ('room', 'room'),
                       ('icon', 'icon')):
         (XML.SubElement(notifier, attr)
-         .text) = data.get(opt)
+         .text) = data.get(opt, '')
+
 
     if data.get('include-custom-message'):
         (XML.SubElement(notifier, 'includeCustomMessage')
@@ -58,3 +58,10 @@ def mattermost_publisher(parser, xml_parent, data):
          .text) = 'false'
         (XML.SubElement(notifier, 'customMessage')
          .text) = ''
+
+    (XML.SubElement(notifier, 'commitInfoChoice')
+     .text) = 'NONE'
+    (XML.SubElement(notifier, 'useCustomProxy')
+     .text) = 'false'
+    (XML.SubElement(notifier, 'proxyPort')
+     .text) = '0'
